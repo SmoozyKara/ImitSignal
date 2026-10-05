@@ -20,14 +20,19 @@ SignalGenerator::SignalGenerator(double sampleRateHz)
 
 std::vector<double> SignalGenerator::sine(const SineParams& params, std::size_t sampleCount) const
 {
-    std::vector<double> out(sampleCount);
+    std::vector<double> out(sampleCount, 0.0);
+    addSine(out, params);
+    return out;
+}
+
+void SignalGenerator::addSine(std::vector<double>& signal, const SineParams& params) const
+{
     // Нормированная угловая частота: на сколько радиан фаза растёт за один отсчёт.
     const double omega = kTwoPi * params.frequencyHz / m_sampleRate;
 
-    for (std::size_t i = 0; i < sampleCount; ++i) {
-        out[i] = params.amplitude * std::sin(omega * static_cast<double>(i) + params.phaseRad);
+    for (std::size_t i = 0; i < signal.size(); ++i) {
+        signal[i] += params.amplitude * std::sin(omega * static_cast<double>(i) + params.phaseRad);
     }
-    return out;
 }
 
 void SignalGenerator::addWhiteNoise(std::vector<double>& signal, double stdDev)

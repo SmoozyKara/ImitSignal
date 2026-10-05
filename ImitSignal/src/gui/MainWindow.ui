@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
-    <height>700</height>
+    <width>1200</width>
+    <height>760</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,17 +26,18 @@
        </attribute>
        <layout class="QHBoxLayout" name="signalTabLayout" stretch="0,1">
         <item>
-         <layout class="QVBoxLayout" name="controlsLayout">
+         <widget class="QWidget" name="controlsPanel" native="true">
+          <property name="maximumSize">
+           <size>
+            <width>340</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <layout class="QVBoxLayout" name="controlsLayout">
           <item>
            <widget class="QGroupBox" name="groupSignalParams">
-            <property name="maximumSize">
-             <size>
-              <width>320</width>
-              <height>16777215</height>
-             </size>
-            </property>
             <property name="title">
-             <string>Параметры сигнала</string>
+             <string>Полезный сигнал</string>
             </property>
             <layout class="QFormLayout" name="signalParamsForm">
              <item row="0" column="0">
@@ -52,13 +53,16 @@
                 <number>2</number>
                </property>
                <property name="minimum">
-                <double>0.010000000000000</double>
+                <double>0.01</double>
                </property>
                <property name="maximum">
-                <double>1000000.000000000000000</double>
+                <double>1000000</double>
+               </property>
+               <property name="singleStep">
+                <double>1</double>
                </property>
                <property name="value">
-                <double>5.000000000000000</double>
+                <double>5</double>
                </property>
               </widget>
              </item>
@@ -74,14 +78,17 @@
                <property name="decimals">
                 <number>3</number>
                </property>
+               <property name="minimum">
+                <double>0</double>
+               </property>
                <property name="maximum">
-                <double>1000.000000000000000</double>
+                <double>1000</double>
                </property>
                <property name="singleStep">
-                <double>0.100000000000000</double>
+                <double>0.1</double>
                </property>
                <property name="value">
-                <double>1.000000000000000</double>
+                <double>1</double>
                </property>
               </widget>
              </item>
@@ -98,13 +105,16 @@
                 <number>1</number>
                </property>
                <property name="minimum">
-                <double>1.000000000000000</double>
+                <double>1</double>
                </property>
                <property name="maximum">
-                <double>10000000.000000000000000</double>
+                <double>10000000</double>
+               </property>
+               <property name="singleStep">
+                <double>100</double>
                </property>
                <property name="value">
-                <double>1000.000000000000000</double>
+                <double>1000</double>
                </property>
               </widget>
              </item>
@@ -121,7 +131,7 @@
                 <number>2</number>
                </property>
                <property name="maximum">
-                <number>10000000</number>
+                <number>1000000</number>
                </property>
                <property name="singleStep">
                 <number>100</number>
@@ -140,17 +150,177 @@
              </item>
              <item row="4" column="1">
               <widget class="QDoubleSpinBox" name="noiseSpin">
+               <property name="toolTip">
+                <string>Среднеквадратичное отклонение белого гауссова шума. 0 — без шума</string>
+               </property>
                <property name="decimals">
                 <number>3</number>
                </property>
+               <property name="minimum">
+                <double>0</double>
+               </property>
                <property name="maximum">
-                <double>1000.000000000000000</double>
+                <double>1000</double>
                </property>
                <property name="singleStep">
-                <double>0.050000000000000</double>
+                <double>0.05</double>
                </property>
                <property name="value">
-                <double>0.200000000000000</double>
+                <double>0.2</double>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupInterference">
+            <property name="title">
+             <string>Помеха (второй синус)</string>
+            </property>
+            <layout class="QFormLayout" name="interferenceForm">
+             <item row="0" column="0">
+              <widget class="QLabel" name="interferenceFrequencyLabel">
+               <property name="text">
+                <string>Частота, Гц</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QDoubleSpinBox" name="interferenceFrequencySpin">
+               <property name="decimals">
+                <number>2</number>
+               </property>
+               <property name="minimum">
+                <double>0.01</double>
+               </property>
+               <property name="maximum">
+                <double>1000000</double>
+               </property>
+               <property name="singleStep">
+                <double>10</double>
+               </property>
+               <property name="value">
+                <double>100</double>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="interferenceAmplitudeLabel">
+               <property name="text">
+                <string>Амплитуда</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="interferenceAmplitudeSpin">
+               <property name="toolTip">
+                <string>0 — без помехи</string>
+               </property>
+               <property name="decimals">
+                <number>3</number>
+               </property>
+               <property name="minimum">
+                <double>0</double>
+               </property>
+               <property name="maximum">
+                <double>1000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.1</double>
+               </property>
+               <property name="value">
+                <double>0.3</double>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupFilter">
+            <property name="title">
+             <string>Фильтр</string>
+            </property>
+            <layout class="QFormLayout" name="filterForm">
+             <item row="0" column="0">
+              <widget class="QLabel" name="filterTypeLabel">
+               <property name="text">
+                <string>Тип</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="filterTypeCombo">
+               <item>
+                <property name="text">
+                 <string>Без фильтра</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Скользящее среднее</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>КИХ ФНЧ (окно Хэмминга)</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="cutoffLabel">
+               <property name="text">
+                <string>Частота среза, Гц</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QDoubleSpinBox" name="cutoffSpin">
+               <property name="toolTip">
+                <string>Должна быть меньше половины частоты дискретизации</string>
+               </property>
+               <property name="decimals">
+                <number>2</number>
+               </property>
+               <property name="minimum">
+                <double>0.01</double>
+               </property>
+               <property name="maximum">
+                <double>1000000</double>
+               </property>
+               <property name="singleStep">
+                <double>1</double>
+               </property>
+               <property name="value">
+                <double>20</double>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="windowSizeLabel">
+               <property name="text">
+                <string>Длина окна, отсч.</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="windowSizeSpin">
+               <property name="toolTip">
+                <string>Нечётное число. Для КИХ — число коэффициентов фильтра</string>
+               </property>
+               <property name="minimum">
+                <number>3</number>
+               </property>
+               <property name="maximum">
+                <number>1001</number>
+               </property>
+               <property name="singleStep">
+                <number>2</number>
+               </property>
+               <property name="value">
+                <number>51</number>
                </property>
               </widget>
              </item>
@@ -177,7 +347,8 @@
             </property>
            </widget>
           </item>
-         </layout>
+          </layout>
+         </widget>
         </item>
         <item>
          <layout class="QVBoxLayout" name="plotsLayout">

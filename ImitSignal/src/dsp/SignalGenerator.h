@@ -22,6 +22,9 @@ public:
     // x[i] = A * sin(2*pi*f*i/fs + phi), i = 0..sampleCount-1
     std::vector<double> sine(const SineParams& params, std::size_t sampleCount) const;
 
+    // Прибавляет к уже существующему сигналу ещё один синус (например, помеху).
+    void addSine(std::vector<double>& signal, const SineParams& params) const;
+
     // Добавляет к сигналу гауссов белый шум с заданным СКО.
     void addWhiteNoise(std::vector<double>& signal, double stdDev);
 
